@@ -84,28 +84,28 @@ if(!isset($_SESSION['user_id'])){
                             <div>
                                 <label for="username">用户名:</label>
                                 <!-- 如果用户已输过用户名，则回显用户名 -->
-                                <input class="span6" type="text" id="username" name="username"
+                                <input class="span6" type="text" id="username" name="username" placeholder="*必填..."
                                 value="<?php if(!empty($user_username)) echo $user_username; ?>" />
                             </div>
                             <div>
                                 <label for="password">密　码:</label>
-                                <input class="span6" type="password" id="password" name="password"/>
+                                <input class="span6" type="password" id="password" name="password" placeholder="*必填..."/>
                             </div>
                             <div>
                                 <label for="user_type">用户类型:</label>
-                                <input class="span6" type="text" id="user_type" name="user_type"/>
+                                <input class="span6" type="text" id="user_type" name="user_type" placeholder="*必填..."/>
                             </div>
                             <div>
                                 <label for="email">邮　箱:</label>
-                                <input class="span6" type="email" id="email" name="email"/>
+                                <input class="span6" type="email" id="email" name="email" placeholder="*必填..."/>
                             </div>
                             <div>
                                 <label for="tel">手机号:</label>
-                                <input class="span6" type="tel" id="tel" name="tel"/>
+                                <input class="span6" type="tel" id="tel" name="tel" placeholder="*必填..."/>
                             </div>
                             <div>
-                                <label for="info">备注信息:</label>
-                                <input class="span6" type="text" id="info" name="info"/>
+                                <label for="info">备注信息:</label>                                
+                                <textarea id="info" class="span6 area" name="info" placeholder="输入信息..." ></textarea>
                             </div>
                             <div style="text-align: right;">
                                 <input type="submit" class="btn btn-info" value="注　册" name="submit"/>
