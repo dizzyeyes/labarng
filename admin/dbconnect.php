@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=UTF-8");
 //数据库的位置
 define('DB_HOST', 'localhost');
 //用户名

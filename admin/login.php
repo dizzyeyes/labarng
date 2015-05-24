@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=UTF-8");
 //插入连接数据库的相关信息
 require_once 'dbconnect.php';
 
@@ -18,6 +19,7 @@ if(!isset($_SESSION['user_id'])){
             $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = SHA('$user_password')";
             // $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = '$user_password'";
             //用用户名和密码进行查询
+            mysqli_query($dbc,"SET NAMES utf8");
             $data = mysqli_query($dbc,$query);
             //若查到的记录正好为一条，则设置SESSION，同时进行页面重定向
             if(mysqli_num_rows($data)==1){

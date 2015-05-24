@@ -12,10 +12,15 @@ if(!isset($_SESSION['user_id'])){
         $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
         $user_username = mysqli_real_escape_string($dbc,trim($_POST['username']));
         $user_password = mysqli_real_escape_string($dbc,trim($_POST['password']));
-
-        if(!empty($user_username)&&!empty($user_password)){
+        $role = mysqli_real_escape_string($dbc,trim($_POST['role']));
+        $email = mysqli_real_escape_string($dbc,trim($_POST['email']));
+        $tel = mysqli_real_escape_string($dbc,trim($_POST['tel']));
+        $comment = mysqli_real_escape_string($dbc,trim($_POST['comment']));
+        
+        if(!empty($user_username)&&!empty($user_password)&&!empty($email)&&!empty($tel)){
             //MySql中的SHA()函数用于对字符串进行单向加密
             $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username'";
+            mysqli_query($dbc,"SET NAMES utf8");
             $data = mysqli_query($dbc,$query);
             if(mysqli_num_rows($data)==1){
                 $error_msg = "Sorry, username:'$user_username' has been taken.Please input another one.";
@@ -27,7 +32,8 @@ if(!isset($_SESSION['user_id'])){
             }
             else
             {
-                $query = "INSERT INTO `lab_user`(`username`, `password`, `role`, `comment`) VALUES ('$user_username', SHA('$user_password'),'admin','')";
+                if(empty($comment)) $comment="";
+                $query = "INSERT INTO `lab_user`(`username`, `password`, `role`, `email`, `tel`, `comment`) VALUES ('$user_username', SHA('$user_password'),'$role','$email','$tel','$comment')";
                 // $query = "INSERT INTO `lab_user`(`username`, `password`, `role`, `comment`) VALUES ('$user_username', '$user_password','admin','')";
                 //用用户名和密码进行查询
                 $data = mysqli_query($dbc,$query);
@@ -92,8 +98,8 @@ if(!isset($_SESSION['user_id'])){
                                 <input class="span6" type="password" id="password" name="password" placeholder="*必填..."/>
                             </div>
                             <div>
-                                <label for="user_type">用户类型:</label>
-                                <input class="span6" type="text" id="user_type" name="user_type" placeholder="*必填..."/>
+                                <label for="role">用户类型:</label>
+                                <input class="span6" type="text" id="role" name="role" placeholder="*必填..."/>
                             </div>
                             <div>
                                 <label for="email">邮　箱:</label>
@@ -104,8 +110,8 @@ if(!isset($_SESSION['user_id'])){
                                 <input class="span6" type="tel" id="tel" name="tel" placeholder="*必填..."/>
                             </div>
                             <div>
-                                <label for="info">备注信息:</label>                                
-                                <textarea id="info" class="span6 area" name="info" placeholder="输入信息..." ></textarea>
+                                <label for="comment">备注信息:</label>                                
+                                <textarea id="comment" class="span6 area" name="comment" placeholder="输入信息..." ></textarea>
                             </div>
                             <div style="text-align: right;">
                                 <input type="submit" class="btn btn-info" value="注　册" name="submit"/>

@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=UTF-8");
 //使用会话内存储的变量值之前必须先开启会话
 session_start();
 //使用一个会话变量检查登录状态

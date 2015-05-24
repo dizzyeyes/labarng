@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/html; charset=UTF-8");
 //即使是注销时，也必须首先开始会话才能访问会话变量
 session_start();
 //使用一个会话变量检查登录状态
