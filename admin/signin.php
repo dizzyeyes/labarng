@@ -70,7 +70,7 @@ if(!isset($_SESSION['user_id'])){
         //    echo '<p class="error">'.$error_msg.'</p>';
         ?>
         <!-- $_SERVER['PHP_SELF']代表用户提交表单时，调用自身php文件 -->
-        <div style="position:absolute;top:10%;left:35%;">
+        <div style="position:absolute;top:10%;left:35%;" id="form">
             <form method = "post" action="<?php echo $_SERVER['PHP_SELF'];?>"　>
                 <div  class="well span6">
                     <fieldset>
@@ -115,7 +115,9 @@ if(!isset($_SESSION['user_id'])){
                 </div>
             </form>
         </div>        
-        
+        <script>
+            MoveFloatLayer('form');
+        </script>
         <?php
         }
         ?>
