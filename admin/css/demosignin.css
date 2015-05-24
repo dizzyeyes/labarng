@@ -1,0 +1,22 @@
+﻿
+body {
+    font-family: Monospace;
+    background-color: #ffffff;
+    margin: 0px;
+    overflow: hidden;
+}
+.well{
+    background-color: #f0f0f0;
+}
+
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Arial, Times New Roman, '微软雅黑' , Tahoma, Helvetica, "\5b8b\4f53", sans-serif;}
+
+input.span6{
+    line-height: 40px;
+    height: 40px;
+}
+
+.alert:click
+{
+    display: none;
+}
