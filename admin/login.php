@@ -16,7 +16,7 @@ if(!isset($_SESSION['user_id'])){
 
         if(!empty($user_username)&&!empty($user_password)){
             //MySql中的SHA()函数用于对字符串进行单向加密
-            $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = SHA('$user_password') AND "."`role` = 'admin'";
+            $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = SHA('$user_password')";
             // $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = '$user_password'";
             //用用户名和密码进行查询
             mysqli_query($dbc,"SET NAMES utf8");
