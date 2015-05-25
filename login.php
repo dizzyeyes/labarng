@@ -95,6 +95,7 @@ if(!isset($_SESSION['user_id'])){
                             </div>
                             <div style="text-align: right;">
                                 <input type="submit" class="btn btn-info" value="登　入" name="submit"/>
+                                <input type="button" class="btn btn-info" value="注　册" onclick="window.location.href='signin.php';"/>
                             </div>
                         </div>
                     </fieldset>
