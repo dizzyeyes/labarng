@@ -113,7 +113,7 @@ else{
                                 <input class="span6" type="tel" id="tel" name="tel" placeholder="*必填..."/>
                             </div>
                             <div>
-                                <label for="comment">备注信息:</label>                                
+                                <label for="comment">所属部门:</label>                                
                                 <textarea id="comment" class="span6 area" name="comment" placeholder="输入信息..." ></textarea>
                             </div>
                             <div style="text-align: right;">

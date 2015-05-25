@@ -107,8 +107,10 @@ else{
                             <div>
                                 <label for="role">用户类型:</label>
                                 <div class="span6" >
-                                    <a style="text-align: center;" class="span2"><input type="radio" class="span1" id="admin" name="role" value="admin" checked />管理员</a>
-                                    <a style="text-align: center;" class="span2"><input type="radio" class="span1" id="user" name="role" value="user"/>普通用户</a>
+                                    <select name="role"  class="span5">
+                                        <option value="admin"selected="selected" >管理员</option>
+                                        <option value="user">普通用户</option>
+                                    </select>
                                 </div>
                             </div>
                             <div>
@@ -120,7 +122,7 @@ else{
                                 <input class="span6" type="tel" id="tel" name="tel" placeholder="*必填..."/>
                             </div>
                             <div>
-                                <label for="comment">备注信息:</label>                                
+                                <label for="comment">所属部门:</label>                                
                                 <textarea id="comment" class="span6 area" name="comment" placeholder="输入信息..." ></textarea>
                             </div>
                             <div style="text-align: right;">
