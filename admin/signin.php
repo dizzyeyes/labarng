@@ -8,6 +8,16 @@ session_start();
 $error_msg = "";
 //如果用户未登录，即未设置$_SESSION['user_id']时，执行以下代码
 if(!isset($_SESSION['user_id'])){
+    
+    $error_msg = 'Sorry, you must log in as an admin.';
+    $home_url = 'login.php';
+    echo "    
+        <div class='alert alert-block alert-danger' onclick='window.location.href=\"$home_url\";'>
+        <strong>$error_msg</strong>
+        </div>
+        ";
+}
+else{
     if(isset($_POST['submit'])){//用户提交登录表单时执行如下代码
         $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
         $user_username = mysqli_real_escape_string($dbc,trim($_POST['username']));
@@ -49,9 +59,6 @@ if(!isset($_SESSION['user_id'])){
                 ";
         }
     }
-}else{//如果用户已经登录，则直接跳转到已经登录页面
-    $home_url = 'logged.php';
-    header('Location: '.$home_url);
 }
 ?>
 <html>
@@ -72,7 +79,7 @@ if(!isset($_SESSION['user_id'])){
     <body>
         <!--通过$_SESSION['user_id']进行判断，如果用户未登录，则显示登录表单，让用户输入用户名和密码-->
         <?php
-        if(!isset($_SESSION['user_id'])){
+        if(isset($_SESSION['user_id'])){
         //    echo '<p class="error">'.$error_msg.'</p>';
         ?>
         <!-- $_SERVER['PHP_SELF']代表用户提交表单时，调用自身php文件 -->
