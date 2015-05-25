@@ -1,5 +1,4 @@
 <?php
-header("Content-Type: text/html; charset=UTF-8");
 //插入连接数据库的相关信息
 require_once 'dbconnect.php';
 
@@ -13,31 +12,36 @@ if(!isset($_SESSION['user_id'])){
         $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
         $user_username = mysqli_real_escape_string($dbc,trim($_POST['username']));
         $user_password = mysqli_real_escape_string($dbc,trim($_POST['password']));
-
-        if(!empty($user_username)&&!empty($user_password)){
+        $role = mysqli_real_escape_string($dbc,trim($_POST['role']));
+        $email = mysqli_real_escape_string($dbc,trim($_POST['email']));
+        $tel = mysqli_real_escape_string($dbc,trim($_POST['tel']));
+        $comment = mysqli_real_escape_string($dbc,trim($_POST['comment']));
+        
+        if(!empty($user_username)&&!empty($user_password)&&!empty($email)&&!empty($tel)){
             //MySql中的SHA()函数用于对字符串进行单向加密
-            $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = SHA('$user_password') AND "."`role` = 'admin'";
-            // $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = '$user_password'";
-            //用用户名和密码进行查询
+            $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username'";
             mysqli_query($dbc,"SET NAMES utf8");
             $data = mysqli_query($dbc,$query);
-            //若查到的记录正好为一条，则设置SESSION，同时进行页面重定向
             if(mysqli_num_rows($data)==1){
-                $row = mysqli_fetch_array($data);
-                $_SESSION['user_id']=$row['user_id'];
-                $_SESSION['username']=$row['username'];
-                $home_url = 'logged.php';
-                header('Location: '.$home_url);
-            }else{//若查到的记录不对，则设置错误信息
-                $error_msg = 'Sorry, you must enter a valid username and password to log in.';
+                $error_msg = "Sorry, username:'$user_username' has been taken.Please input another one.";
                 echo "
                     <div class='alert alert-block alert-danger' onclick='this.style.display=\"none\";'>
                     <strong>$error_msg</strong>
                     </div>
                     ";
             }
+            else
+            {
+                if(empty($comment)) $comment="";
+                $query = "INSERT INTO `lab_user`(`username`, `password`, `role`, `email`, `tel`, `comment`) VALUES ('$user_username', SHA('$user_password'),'$role','$email','$tel','$comment')";
+                // $query = "INSERT INTO `lab_user`(`username`, `password`, `role`, `comment`) VALUES ('$user_username', '$user_password','admin','')";
+                //用用户名和密码进行查询
+                $data = mysqli_query($dbc,$query);
+                $home_url = 'login.php';
+                header('Location: '.$home_url);
+            }
         }else{
-            $error_msg = 'Sorry, you must enter a valid username and password to log in.';
+            $error_msg = 'Sorry, you must enter a valid username and password to sign in.';
             echo "
                 <div class='alert alert-block alert-danger' onclick='this.style.display=\"none\";'>
                 <strong>$error_msg</strong>
@@ -45,20 +49,21 @@ if(!isset($_SESSION['user_id'])){
                 ";
         }
     }
-}else{//如果用户已经登录，则直接跳转到已经登录页面
+}
+else{   
     $home_url = 'logged.php';
     header('Location: '.$home_url);
 }
 ?>
 <html>
     <head>
-        <title>实验室预约系统 - 登入</title>
+        <title>实验室预约系统 - 注册</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
         
         <link href="css/prettify.css" rel="stylesheet" />
         <link href="css/bootstrap.2.1.0.css" rel="stylesheet">
-        <link href="css/demo.css" rel="stylesheet" />
+        <link href="css/demosignin.css" rel="stylesheet" />
         <script Charset="UTF-8" src="libs/jquery-2.1.3.js" type="text/javascript"></script>
         <script Charset="UTF-8" src="libs/prettify.js" type="text/javascript"></script>
         <script Charset="UTF-8" src="js/dialogProcess.js" type="text/javascript"></script>
@@ -72,39 +77,57 @@ if(!isset($_SESSION['user_id'])){
         //    echo '<p class="error">'.$error_msg.'</p>';
         ?>
         <!-- $_SERVER['PHP_SELF']代表用户提交表单时，调用自身php文件 -->
-        <div style="position:absolute;top:20%;left:40%;" id="form">
+        <div style="position:absolute;top:10%;left:35%;" id="form">
             <form method = "post" action="<?php echo $_SERVER['PHP_SELF'];?>"　>
-                <div  class="well span4">
+                <div  class="well span6">
                     <fieldset>
                         <div style="text-align: center;">
                             <legend>
                                 <h3 >实验室预约系统<br>
-                                登　　入</h3>
+                                注　　册</h3>
                             </legend>
                         </div>
                         <div >
                             <div>
                                 <label for="username">用户名:</label>
                                 <!-- 如果用户已输过用户名，则回显用户名 -->
-                                <input class="span4" type="text" id="username" name="username" size="20"
+                                <input class="span6" type="text" id="username" name="username" placeholder="*必填..."
                                 value="<?php if(!empty($user_username)) echo $user_username; ?>" />
                             </div>
                             <div>
                                 <label for="password">密　码:</label>
-                                <input class="span4" type="password" id="password" name="password" size="20"/>
+                                <input class="span6" type="password" id="password" name="password" placeholder="*必填..."/>
+                            </div>
+                            <div>
+                                <label for="role">用户类型:</label>
+                                <div class="span6" >
+                                    <a style="text-align: center;" class="span2"><input type="radio" class="span1" id="admin" name="role" value="admin" checked />管理员</a>
+                                    <a style="text-align: center;" class="span2"><input type="radio" class="span1" id="user" name="role" value="user"/>普通用户</a>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email">邮　箱:</label>
+                                <input class="span6" type="email" id="email" name="email" placeholder="*必填..."/>
+                            </div>
+                            <div>
+                                <label for="tel">手机号:</label>
+                                <input class="span6" type="tel" id="tel" name="tel" placeholder="*必填..."/>
+                            </div>
+                            <div>
+                                <label for="comment">备注信息:</label>                                
+                                <textarea id="comment" class="span6 area" name="comment" placeholder="输入信息..." ></textarea>
                             </div>
                             <div style="text-align: right;">
-                                <input type="submit" class="btn btn-info" value="登　入" name="submit"/>
+                                <input type="submit" class="btn btn-info" value="注　册" name="submit"/>
                             </div>
                         </div>
                     </fieldset>
                 </div>
             </form>
-        </div>       
+        </div>        
         <script>
             MoveFloatLayer('form');
-        </script>     
-        
+        </script>
         <?php
         }
         ?>

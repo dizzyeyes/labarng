@@ -106,7 +106,10 @@ else{
                             </div>
                             <div>
                                 <label for="role">用户类型:</label>
-                                <input class="span6" type="text" id="role" name="role" placeholder="*必填..."/>
+                                <div class="span6" >
+                                    <a style="text-align: center;" class="span2"><input type="radio" class="span1" id="admin" name="role" value="admin" checked />管理员</a>
+                                    <a style="text-align: center;" class="span2"><input type="radio" class="span1" id="user" name="role" value="user"/>普通用户</a>
+                                </div>
                             </div>
                             <div>
                                 <label for="email">邮　箱:</label>
