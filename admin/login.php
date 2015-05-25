@@ -8,7 +8,7 @@ session_start();
 
 $error_msg = "";
 //如果用户未登录，即未设置$_SESSION['user_id']时，执行以下代码
-if(!isset($_SESSION['user_id'])){
+if(!(isset($_SESSION['username'])&&$_SESSION['role']=="admin")){
     if(isset($_POST['submit'])){//用户提交登录表单时执行如下代码
         $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
         $user_username = mysqli_real_escape_string($dbc,trim($_POST['username']));
@@ -23,7 +23,17 @@ if(!isset($_SESSION['user_id'])){
             $data = mysqli_query($dbc,$query);
             //若查到的记录正好为一条，则设置SESSION，同时进行页面重定向
             if(mysqli_num_rows($data)==1){
-                $row = mysqli_fetch_array($data);
+                $row = mysqli_fetch_array($data);    
+                
+                if(isset($_SESSION['user_id'])){
+                    //要清除会话变量，将$_SESSION超级全局变量设置为一个空数组
+                    $_SESSION = array();
+                    //如果存在一个会话cookie，通过将到期时间设置为之前1个小时从而将其删除
+                    if(isset($_COOKIE[session_name()])){
+                        setcookie(session_name(),'',time()-3600);
+                    }
+                }
+                
                 $_SESSION['user_id']=$row['user_id'];
                 $_SESSION['role']=$row['role'];
                 $_SESSION['username']=$row['username'];
