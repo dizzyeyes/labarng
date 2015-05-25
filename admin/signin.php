@@ -7,7 +7,7 @@ session_start();
 
 $error_msg = "";
 //如果用户未登录，即未设置$_SESSION['user_id']时，执行以下代码
-if(!isset($_SESSION['user_id'])){
+if(!(isset($_SESSION['username'])&&$_SESSION['role']=="admin")){
     
     $error_msg = 'Sorry, you must log in as an admin.';
     $home_url = 'login.php';
@@ -79,7 +79,7 @@ else{
     <body>
         <!--通过$_SESSION['user_id']进行判断，如果用户未登录，则显示登录表单，让用户输入用户名和密码-->
         <?php
-        if(isset($_SESSION['user_id'])){
+        if((isset($_SESSION['username'])&&$_SESSION['role']=="admin")){
         //    echo '<p class="error">'.$error_msg.'</p>';
         ?>
         <!-- $_SERVER['PHP_SELF']代表用户提交表单时，调用自身php文件 -->

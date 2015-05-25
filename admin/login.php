@@ -16,7 +16,7 @@ if(!isset($_SESSION['user_id'])){
 
         if(!empty($user_username)&&!empty($user_password)){
             //MySql中的SHA()函数用于对字符串进行单向加密
-            $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = SHA('$user_password') AND "."`role` = 'admin'";
+            $query = "SELECT `user_id`, `username` , `role` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = SHA('$user_password') AND "."`role` = 'admin'";
             // $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = '$user_password'";
             //用用户名和密码进行查询
             mysqli_query($dbc,"SET NAMES utf8");
@@ -25,6 +25,7 @@ if(!isset($_SESSION['user_id'])){
             if(mysqli_num_rows($data)==1){
                 $row = mysqli_fetch_array($data);
                 $_SESSION['user_id']=$row['user_id'];
+                $_SESSION['role']=$row['role'];
                 $_SESSION['username']=$row['username'];
                 $home_url = 'logged.php';
                 header('Location: '.$home_url);
@@ -46,8 +47,19 @@ if(!isset($_SESSION['user_id'])){
         }
     }
 }else{//如果用户已经登录，则直接跳转到已经登录页面
-    $home_url = 'logged.php';
-    header('Location: '.$home_url);
+    if($_SESSION['role']=="admin")
+    {
+        $home_url = 'logged.php';
+        header('Location: '.$home_url);
+    }
+    else{        
+        $error_msg = 'Sorry, you must log in as an admin.';
+        echo "
+            <div class='alert alert-block alert-danger' onclick='this.style.display=\"none\";'>
+            <strong>$error_msg</strong>
+            </div>
+            ";
+    }
 }
 ?>
 <html>
@@ -68,7 +80,7 @@ if(!isset($_SESSION['user_id'])){
     <body>
         <!--通过$_SESSION['user_id']进行判断，如果用户未登录，则显示登录表单，让用户输入用户名和密码-->
         <?php
-        if(!isset($_SESSION['user_id'])){
+        if(!(isset($_SESSION['username'])&&$_SESSION['role']=="admin")){
         //    echo '<p class="error">'.$error_msg.'</p>';
         ?>
         <!-- $_SERVER['PHP_SELF']代表用户提交表单时，调用自身php文件 -->

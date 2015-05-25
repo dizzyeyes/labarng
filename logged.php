@@ -3,7 +3,11 @@ header("Content-Type: text/html; charset=UTF-8");
 //使用会话内存储的变量值之前必须先开启会话
 session_start();
 //使用一个会话变量检查登录状态
-if(isset($_SESSION['username'])){
+if(!isset($_SESSION['username'])){    
+    $home_url = 'login.php';
+    header('Location: '.$home_url);
+}
+else{
     echo 'You are Logged as '.$_SESSION['username'].'<br/>';
     //点击“Log Out”,则转到logOut页面进行注销
     echo '<a href="logOut.php"> Log Out('.$_SESSION['username'].')</a>';
