@@ -126,8 +126,9 @@ else{
                                 <label for="comment">所属部门:</label>                                
                                 <textarea id="comment" class="span6 area" name="comment" placeholder="输入信息..." ></textarea>
                             </div>
-                            <div style="text-align: right;">
+                            <div style="text-align: center;">
                                 <input type="submit" class="btn btn-info" value="注　册" name="submit"/>
+                                <a href='index.php' >返　回</a>
                             </div>
                         </div>
                     </fieldset>

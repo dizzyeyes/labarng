@@ -13,18 +13,6 @@ body {
     background-color: #ffffff;
 }
 
-body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Arial, Times New Roman, '微软雅黑' , Tahoma, Helvetica, "\5b8b\4f53", sans-serif;}
-
-input.span4{
-    line-height: 40px;
-    height: 40px;
-}
-
-input.span6{
-    line-height: 40px;
-    height: 40px;
-}
-
 .alert:click
 {
     display: none;
@@ -40,4 +28,21 @@ input.span6{
     background-size: cover;
     background-repeat:no-repeat;
     background-attachment: fixed;
+}
+
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Arial, Times New Roman, '微软雅黑' , Tahoma, Helvetica, "\5b8b\4f53", sans-serif;}
+
+input.span4{
+    line-height: 40px;
+    height: 40px;
+}
+
+input.span6{
+    line-height: 40px;
+    height: 40px;
+}
+
+label.click:hover{
+    cursor:hand;
+    text-decoration: underline;
 }

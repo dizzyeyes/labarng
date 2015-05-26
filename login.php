@@ -97,9 +97,10 @@ if(!isset($_SESSION['user_id'])){
                                 <label for="password">密　码:</label>
                                 <input class="span4" type="password" id="password" name="password" size="20"/>
                             </div>
-                            <div style="text-align: right;">
+                            <div style="text-align: center;">
+                                <label class="click" onclick="window.location.href='signup.php';" >去注册</label>
                                 <input type="submit" class="btn btn-info" value="登　入" name="submit"/>
-                                <input type="button" class="btn btn-info" value="注　册" onclick="window.location.href='signup.php';"/>
+                                <!-- <input type="button" class="btn btn-info" value="去注册" onclick="window.location.href='signup.php';"/> -->
                             </div>
                         </div>
                     </fieldset>

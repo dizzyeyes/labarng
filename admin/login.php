@@ -120,6 +120,7 @@ if(!(isset($_SESSION['username'])&&$_SESSION['role']=="admin")){
                             </div>
                             <div style="text-align: right;">
                                 <input type="submit" class="btn btn-info" value="登　入" name="submit"/>
+                                <a href='../index.php' >返回主页</a>
                             </div>
                         </div>
                     </fieldset>
