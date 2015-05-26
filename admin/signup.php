@@ -69,11 +69,12 @@ else{
         
         <link href="css/prettify.css" rel="stylesheet" />
         <link href="css/bootstrap.2.1.0.css" rel="stylesheet">
-        <link href="css/demosignin.css" rel="stylesheet" />
+        <link href="css/demo.css" rel="stylesheet" />
         <script Charset="UTF-8" src="libs/jquery-2.1.3.js" type="text/javascript"></script>
         <script Charset="UTF-8" src="libs/prettify.js" type="text/javascript"></script>
         <script Charset="UTF-8" src="js/dialogProcess.js" type="text/javascript"></script>
         <script Charset="UTF-8" src="js/fadeInFadeOut.js" type="text/javascript"></script>
+        <script Charset="UTF-8" src="js/event.js" type="text/javascript"></script>
     </head>
     
     <body>

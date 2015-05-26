@@ -64,9 +64,12 @@ if(!isset($_SESSION['user_id'])){
         <script Charset="UTF-8" src="libs/prettify.js" type="text/javascript"></script>
         <script Charset="UTF-8" src="js/dialogProcess.js" type="text/javascript"></script>
         <script Charset="UTF-8" src="js/fadeInFadeOut.js" type="text/javascript"></script>
+        <script Charset="UTF-8" src="js/event.js" type="text/javascript"></script>
     </head>
     
-    <body>
+    <body>    
+    <div class="background" id="background"></div>
+    <script>setInterval(changePicture,2000);</script>
         <!--通过$_SESSION['user_id']进行判断，如果用户未登录，则显示登录表单，让用户输入用户名和密码-->
         <?php
         if(!isset($_SESSION['user_id'])){

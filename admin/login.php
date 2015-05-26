@@ -74,7 +74,7 @@ if(!(isset($_SESSION['username'])&&$_SESSION['role']=="admin")){
 ?>
 <html>
     <head>
-        <title>实验室预约系统 - 登入</title>
+        <title>实验室预约系统 - 后台登入</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
         
@@ -85,9 +85,12 @@ if(!(isset($_SESSION['username'])&&$_SESSION['role']=="admin")){
         <script Charset="UTF-8" src="libs/prettify.js" type="text/javascript"></script>
         <script Charset="UTF-8" src="js/dialogProcess.js" type="text/javascript"></script>
         <script Charset="UTF-8" src="js/fadeInFadeOut.js" type="text/javascript"></script>
+        <script Charset="UTF-8" src="js/event.js" type="text/javascript"></script>
     </head>
     
     <body>
+    <div class="background" id="background"></div>
+    <script>setInterval(changePicture,2000);</script>
         <!--通过$_SESSION['user_id']进行判断，如果用户未登录，则显示登录表单，让用户输入用户名和密码-->
         <?php
         if(!(isset($_SESSION['username'])&&$_SESSION['role']=="admin")){
@@ -101,7 +104,7 @@ if(!(isset($_SESSION['username'])&&$_SESSION['role']=="admin")){
                         <div style="text-align: center;">
                             <legend>
                                 <h3 >实验室预约系统<br>
-                                登　　入</h3>
+                                后台登入</h3>
                             </legend>
                         </div>
                         <div >
