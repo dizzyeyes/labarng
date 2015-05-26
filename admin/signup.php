@@ -1,6 +1,6 @@
 <?php
 //插入连接数据库的相关信息
-require_once 'dbconnect.php';
+require_once '../dbconnect.php';
 
 //开启一个会话
 session_start();
