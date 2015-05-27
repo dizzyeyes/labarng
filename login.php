@@ -10,7 +10,6 @@ $error_msg = "";
 //如果用户未登录，即未设置$_SESSION['user_id']时，执行以下代码
 if(!isset($_SESSION['user_id'])){
     if(isset($_POST['submit'])){//用户提交登录表单时执行如下代码
-        $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
         $user_username = mysqli_real_escape_string($dbc,trim($_POST['username']));
         $user_password = mysqli_real_escape_string($dbc,trim($_POST['password']));
 
@@ -19,7 +18,6 @@ if(!isset($_SESSION['user_id'])){
             $query = "SELECT `user_id`, `username`, `role` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = SHA('$user_password') ";
             // $query = "SELECT `user_id`, `username` FROM `lab_user` WHERE `username` = '$user_username' AND "."`password` = '$user_password'";
             //用用户名和密码进行查询
-            mysqli_query($dbc,"SET NAMES utf8");
             $data = mysqli_query($dbc,$query);
             //若查到的记录正好为一条，则设置SESSION，同时进行页面重定向
             if(mysqli_num_rows($data)==1){
@@ -27,7 +25,7 @@ if(!isset($_SESSION['user_id'])){
                 $_SESSION['user_id']=$row['user_id'];
                 $_SESSION['role']=$row['role'];
                 $_SESSION['username']=$row['username'];
-                $home_url = 'logged.php';
+                $home_url = 'index.php';
                 header('Location: '.$home_url);
             }else{//若查到的记录不对，则设置错误信息
                 $error_msg = 'Sorry, you must enter a valid username and password to log in.';
@@ -47,7 +45,7 @@ if(!isset($_SESSION['user_id'])){
         }
     }
 }else{//如果用户已经登录，则直接跳转到已经登录页面
-    $home_url = 'logged.php';
+    $home_url = 'index.php';
     header('Location: '.$home_url);
 }
 ?>

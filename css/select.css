@@ -1,0 +1,16 @@
+
+body {
+    font-family: Monospace;
+    background-color: #000;
+    margin: 0px;
+    overflow: hidden;
+}
+
+#calendar {
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+.fc-view-container, .fc-toolbar{
+    width:100%;
+}

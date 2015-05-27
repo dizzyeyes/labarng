@@ -1,10 +1,33 @@
+<?php
+    require_once 'logged.php';
+?>
 <html>
 <head>
-<meta charset="utf-8">
-<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb2312">
-<meta http-equiv="refresh" content="0.1;url=./login.php">
-<title></title>
+<meta charset='utf-8' />
+
+<link href="css/bootstrap.2.1.0.css" rel="stylesheet">
+<link href='css/demo.css' rel='stylesheet' />
+<link href='css/select.css' rel='stylesheet' />
+<link href='css/themes/black-tie/jquery-ui.min.css' rel='stylesheet' />
+<link href='css/cal/fullcalendar.css' rel='stylesheet' />
+<link href='css/cal/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='libs/moment/moment.js'></script>
+<script src='libs/jquery-2.1.3.js'></script>
+<script src='libs/fullcalendar.js'></script>
+<script src='js/calendar.js'></script>
+<script src='data.js'></script>
+
 </head>
+<?php
+header("Content-Type: text/html; charset=UTF-8");
+    //点击“Log Out”,则转到logOut页面进行注销
+    echo '<button class="btn btn-info btn-small" onclick="window.location.href=\'logout.php\';"> 注　销('.$_SESSION['username'].')</button>';
+/**在已登录页面中，可以利用用户的session如$_SESSION['username']、
+ * $_SESSION['user_id']对数据库进行查询，可以做好多好多事情*/
+?>
 <body>
+
+    <div id='calendar'></div>
+
 </body>
 </html>

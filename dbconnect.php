@@ -13,4 +13,7 @@ define('DB_HOST', SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT);
 
 /** 创建数据表时默认的文字编码 */
 define('DB_CHARSET', 'utf8');
+
+$dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+mysqli_query($dbc,"SET NAMES utf8");
 ?>

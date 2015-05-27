@@ -51,7 +51,7 @@ if(!isset($_SESSION['user_id'])){
     }
 }
 else{   
-    $home_url = 'logged.php';
+    $home_url = 'index.php';
     header('Location: '.$home_url);
 }
 ?>
