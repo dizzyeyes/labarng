@@ -19,7 +19,6 @@
 
 </head>
 <?php
-header("Content-Type: text/html; charset=UTF-8");
     //点击“Log Out”,则转到logOut页面进行注销
     echo '<button class="btn btn-info btn-small" onclick="window.location.href=\'logout.php\';"> 注　销('.$_SESSION['username'].')</button>';
 /**在已登录页面中，可以利用用户的session如$_SESSION['username']、

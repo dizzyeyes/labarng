@@ -1,5 +1,4 @@
 <?php 
-header("Content-Type: text/html; charset=UTF-8");
     require_once 'utils.php';
     require_once 'logged.php';
     require_once 'dbconnect.php';
