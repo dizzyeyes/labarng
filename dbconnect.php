@@ -1,15 +1,18 @@
 <?php
-//数据库的位置
-define('DB_HOST', 'localhost');
-//用户名
-define('DB_USER', 'root');
-//口令
-define('DB_PASSWORD', '');
-//数据库名
-define('DB_NAME','labarng') ;
+/** WordPress 数据库的名称 */
+define('DB_NAME', SAE_MYSQL_DB);
 
-define('TB_PRE','lab') ;
+/** MySQL 数据库用户名 */
+define('DB_USER', SAE_MYSQL_USER);
+
+/** MySQL 数据库密码 */
+define('DB_PASSWORD', SAE_MYSQL_PASS);
+
+/** MySQL 主机 */
+define('DB_HOST', SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT);
+
+/** 创建数据表时默认的文字编码 */
+define('DB_CHARSET', 'utf8');
 
 $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
-mysqli_query($dbc,"SET NAMES utf8");
 ?>

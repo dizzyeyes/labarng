@@ -17,7 +17,6 @@
 <script src='libs/fullcalendar.js'></script>
 <script src='libs/zh-cn.js'></script>
 <script src='js/calendar.js'></script>
-
 </head>
 <body>
 
