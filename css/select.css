@@ -10,7 +10,18 @@ body {
     max-width: 60%;
     margin: 0 auto;
 }
+#top {
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    padding: 0 10px;
+    line-height: 40px;
+    font-size: 12px;
+}
 
 .fc-view-container, .fc-toolbar{
     width:100%;
+}
+
+a#lblanguage:hover{
+    text-decoration:none;
 }
