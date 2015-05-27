@@ -18,7 +18,7 @@ function url_encode($str) {
 
 function fectch_url_json($url)
 {
-    set_time_limit(1800);
+    // set_time_limit(1800);
     $contents1 = file_get_contents($url); 
     if(preg_match('/^\xEF\xBB\xBF/',$contents1))
     {
